@@ -19,6 +19,6 @@ jobs:
       env:
         USER: ${{ secrets.USER }}
         PASS: ${{ secrets.PASS }}
-      run: docker login -u $USER -p $PASS https://hub.docker.com; 
+      run: docker login -u $USER -p $PASS; 
         docker build . --file Dockerfile --tag chasepd/msfconsole:$(date +%s); 
         docker push chasepd/msfconsole
