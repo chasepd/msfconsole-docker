@@ -16,6 +16,9 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker login -u ${{ USER }} -p ${{ PASS }} https://hub.docker.com; 
+      env:
+        USER: ${{ secrets.USER }}
+        PASS: ${{ secrets.PASS }}
+      run: docker login -u $USER -p $PASS https://hub.docker.com; 
         docker build . --file Dockerfile --tag chasepd/msfconsole:$(date +%s); 
         docker push chasepd/msfconsole
